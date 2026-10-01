@@ -19,7 +19,7 @@ public class UserService {
     }
 
     public List<User> findAll() {
-        return null;
+        return repository.findAll();
     }
 
     public User findById(String id) {
