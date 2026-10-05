@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @Service
 public class PostService {
@@ -23,11 +24,11 @@ public class PostService {
     }
 
     public List<Post> findByTitle(String text) {
-        return repository.searchTitle(text);
+        return repository.searchTitle(Pattern.quote(text));
     }
 
     public List<Post> fullSearch(String text, Date minDate, Date maxDate) {
         maxDate = new Date(maxDate.getTime() + 24 * 60 * 60 * 1000);
-        return repository.fullSearch(text, minDate, maxDate);
+        return repository.fullSearch(Pattern.quote(text), minDate, maxDate);
     }
 }
